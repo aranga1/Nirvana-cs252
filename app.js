@@ -1,4 +1,5 @@
 /*eslint-env node*/
+'use strict';
 
 //------------------------------------------------------------------------------
 // node.js starter application for Bluemix
@@ -26,4 +27,22 @@ var appEnv = cfenv.getAppEnv();
 app.listen(appEnv.port, '0.0.0.0', function() {
   // print a message when the server starts listening
   console.log("server starting on " + appEnv.url);
+});
+
+
+var TradeoffAnalyticsV1 = require('watson-developer-cloud/tradeoff-analytics/v1');
+
+var tradeoff_analytics = new TradeoffAnalyticsV1({
+  username: '86c90bba-b4dc-4e1d-9b67-29ec2e273e88',
+  password: 'IuWCjrl0ATyJ'
+});
+
+// From file
+var params = require('./resources/problem.json');
+
+tradeoff_analytics.dilemmas(params, function(err, res) {
+  if (err)
+    console.log(err);
+  else
+    console.log(JSON.stringify(res, null, 2));
 });
