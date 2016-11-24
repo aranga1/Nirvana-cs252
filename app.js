@@ -38,7 +38,7 @@ var tradeoff_analytics = new TradeoffAnalyticsV1({
 });
 
 // From file
-var params = require('./resources/problem.json');
+var params = require('problem.json');
 
 tradeoff_analytics.dilemmas(params, function(err, res) {
   if (err)
